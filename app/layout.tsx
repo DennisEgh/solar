@@ -1,20 +1,19 @@
-// Import React
-import React, { ReactNode } from 'react';
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+export const metadata = {
+  title: "Solar",
+  description: "Website",
+};
 
-// Define the prop types
-interface RootLayoutProps {
-  children: ReactNode;
-}
-
-// Component
-const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <body>
-        <div className="main">
-          <div className="gradient" />
-        </div>
-        <main className="app">{children}</main>
+        <main className="app">
+            <Nav />
+            {children}
+            <Footer />
+            </main>
       </body>
     </html>
   );
