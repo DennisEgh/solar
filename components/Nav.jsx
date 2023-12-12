@@ -3,12 +3,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { signIn, signOut, useSession, getProviders, } from "next-auth/react";
 import img from "./assets/account.svg";
 
 const Nav = () => {
+  const isUserLoggedIn = true;
+  const [providers, setProvider] = useState(null)
+
   useEffect(() => {
-    console.log("test");
+    const setProviders = async () =>{
+        const response = await getProviders();
+
+        setProviders(response)
+        
+    }
+    
   }, []);
 
   return (
@@ -29,7 +38,7 @@ const Nav = () => {
         <div className="nav__bar--middle">
           <div className="nav__bar--item">
             <Link href="/" className="nav__bar--link">
-              <span className="nav__bar--para">Solarpanels</span>
+              <span className="nav__bar--para">Solar Panels</span>
             </Link>
           </div>
           <div className="nav__bar--item">
@@ -46,8 +55,27 @@ const Nav = () => {
         <div className="nav__bar--left">
           <div className="nav__bar--item">
             <Link href="/" className="nav__bar--link">
-              <Image className="nav__bar--image" src={img} width={35} height={35} alt="Account" />
+              <div className="nav__bar--contact">
+                <span className="nav__bar--contact--para">Contact</span>
+              </div>
             </Link>
+          </div>
+          <div className="nav__bar--item">
+            {isUserLoggedIn ? (
+              <Link href="/profile" className="nav__bar--link">
+                <span>logged in</span>
+              </Link>
+            ) : (
+              <Link href="/" className="nav__bar--link">
+                <Image
+                  className="nav__bar--image"
+                  src={img}
+                  width={35}
+                  height={35}
+                  alt="Account"
+                />
+              </Link>
+            )}
           </div>
         </div>
       </div>

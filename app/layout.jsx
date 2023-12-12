@@ -1,12 +1,12 @@
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
+import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 import "../styles/globals.css"
 export const metadata = {
   title: "Solar",
   description: "Website",
 };
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body>
