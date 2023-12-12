@@ -3,22 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { signIn, signOut, useSession, getProviders, } from "next-auth/react";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import img from "./assets/account.svg";
+import { Avatar } from "@mui/material";
 
 const Nav = () => {
   const isUserLoggedIn = true;
-  const [providers, setProvider] = useState(null)
-
-  useEffect(() => {
-    const setProviders = async () =>{
-        const response = await getProviders();
-
-        setProviders(response)
-        
-    }
-    
-  }, []);
+  const [providers, setProvider] = useState(null);
 
   return (
     <nav>
@@ -63,18 +54,23 @@ const Nav = () => {
           <div className="nav__bar--item">
             {isUserLoggedIn ? (
               <Link href="/profile" className="nav__bar--link">
-                <span>logged in</span>
+                <Avatar sx={{ bgcolor: "orange" }}>DE</Avatar>
               </Link>
             ) : (
-              <Link href="/" className="nav__bar--link">
-                <Image
-                  className="nav__bar--image"
-                  src={img}
-                  width={35}
-                  height={35}
-                  alt="Account"
-                />
-              </Link>
+              <>
+                {providers &&
+                  Object.values(providers).map((provider) => (
+                    <Image
+                      className="nav__bar--image"
+                      src={img}
+                      width={35}
+                      height={35}
+                      alt="Account"
+                      key={provider.name}
+                      onClick={() => signIn(provider.id)}
+                    />
+                  ))}
+              </>
             )}
           </div>
         </div>
