@@ -32,6 +32,8 @@ const handler = NextAuth({
             email: profile.email,
             name: profile.name,
             image: profile.picture,
+            email_verified: profile.email_verified
+
           });
         }
         return true;

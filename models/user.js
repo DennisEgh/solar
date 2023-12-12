@@ -6,8 +6,13 @@ const UserSchema = new Schema({
     unique: [true, "Email already exists!"],
     required: [true, "Email is required!"],
   },
+  email_verified: {
+    type: Boolean,
+    required: [true, "Email must be verified"],
+  },
   name: {
     type: String,
+    required: [true, "A Name is required"]
   },
   image: {
     type: String,
