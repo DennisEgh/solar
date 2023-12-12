@@ -9,6 +9,7 @@ import { Avatar } from "@mui/material";
 
 const Nav = () => {
   const { data: session } = useSession();
+
   const [providers, setProvider] = useState(null);
 
   useEffect(() => {
@@ -63,7 +64,10 @@ const Nav = () => {
           {session?.user ? (
             <div className="nav__bar--item">
               <div className="nav__bar--contact">
-                <span className="nav__bar--contact--para" onClick={signOut}>
+                <span
+                  className="nav__bar--contact--para"
+                  onClick={() => signOut()}
+                >
                   Temp sign out
                 </span>
               </div>
