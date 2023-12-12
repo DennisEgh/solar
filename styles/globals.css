@@ -71,6 +71,7 @@ nav {
 }
 .nav__bar--image {
   filter: invert(100%);
+  cursor: pointer;
 }
 .nav__bar--contact {
   width: 100px;

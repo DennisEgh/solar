@@ -8,8 +8,17 @@ import img from "./assets/account.svg";
 import { Avatar } from "@mui/material";
 
 const Nav = () => {
-  const isUserLoggedIn = true;
+  const { data: session } = useSession();
   const [providers, setProvider] = useState(null);
+
+  useEffect(() => {
+    const setUpProvider = async () => {
+      const response = await getProviders();
+
+      setProvider(response);
+    };
+    setUpProvider();
+  }, []);
 
   return (
     <nav>
@@ -51,10 +60,19 @@ const Nav = () => {
               </div>
             </Link>
           </div>
+          {session?.user ? (
+            <div className="nav__bar--item">
+              <div className="nav__bar--contact">
+                <span className="nav__bar--contact--para" onClick={signOut}>
+                  Temp sign out
+                </span>
+              </div>
+            </div>
+          ) : null}
           <div className="nav__bar--item">
-            {isUserLoggedIn ? (
+            {session?.user ? (
               <Link href="/profile" className="nav__bar--link">
-                <Avatar sx={{ bgcolor: "orange" }}>DE</Avatar>
+                <Avatar alt="Profile" src={session?.user.image} />
               </Link>
             ) : (
               <>

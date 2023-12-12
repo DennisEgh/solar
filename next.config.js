@@ -2,7 +2,7 @@
 
 const nextConfig = {
   experimental: {
-    appDir: true,
+    
     serverComponentsExternalPackages: ["mongoose"],
   },
   images: {
@@ -11,7 +11,7 @@ const nextConfig = {
   webpack(config) {
     config.experiments = {
       ...config.experiments,
-      toLevelAwait: true,
+      topLevelAwait: true,
     };
     return config;
   },
