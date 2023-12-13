@@ -1,10 +1,9 @@
-import Link from "next/link"
+import {Link} from '../navigation'
 
 
 const Footer = () => {
   return (
-<div>footer</div>
-    )
+<Link href="/user">About</Link>    )
 }
 
 export default Footer

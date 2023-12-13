@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
@@ -8,6 +7,7 @@ import accountlogo from "./assets/account.svg";
 import globelogo from "./assets/Globe_icon.svg";
 import { Avatar } from "@mui/material";
 import { useMessages } from "next-intl";
+import { Link } from "../navigation";
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -70,7 +70,18 @@ const Nav = () => {
             </Link>
           </div>
           <div className="nav__bar--item">
-            <Link href="/sv_se">
+            <Link href="/" locale="sv_se">
+              <Image
+                className="nav__bar--image"
+                src={globelogo}
+                width={20}
+                height={20}
+                alt="Translate"
+              ></Image>
+            </Link>
+          </div>
+          <div className="nav__bar--item">
+            <Link href="/" locale="en_us">
               <Image
                 className="nav__bar--image"
                 src={globelogo}

@@ -1,4 +1,5 @@
 
+
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import "../../styles/globals.css";
@@ -15,7 +16,7 @@ const RootLayout = ({ children }) => {
   const messages = useMessages()
   
   
-
+  
   return (
     <NextIntlClientProvider messages={messages}>
 
