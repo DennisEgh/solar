@@ -70,15 +70,15 @@ const Nav = () => {
             </Link>
           </div>
           <div className="nav__bar--item">
-            <Link href='/sv_se'>
-            <Image
-              className="nav__bar--image"
-              src={globelogo}
-              width={20}
-              height={20}
-              alt="Translate"
+            <Link href="/sv_se">
+              <Image
+                className="nav__bar--image"
+                src={globelogo}
+                width={20}
+                height={20}
+                alt="Translate"
               ></Image>
-              </Link>
+            </Link>
           </div>
 
           {session?.user ? (
