@@ -6,8 +6,9 @@ import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import img from "./assets/account.svg";
 import { Avatar } from "@mui/material";
+import { useMessages } from 'next-intl';
 
-const Nav = (locale={locale} , messages={messages}) => {
+const Nav = () => {
   const { data: session } = useSession();
 
   const [providers, setProvider] = useState(null);
@@ -19,10 +20,12 @@ const Nav = (locale={locale} , messages={messages}) => {
       setProvider(response);
     };
     setUpProvider();
+  
   }, []);
-
+  const messages = useMessages();
   
 
+console.log( messages?.Index?.title)
   return (
     
       <nav>
@@ -100,7 +103,7 @@ const Nav = (locale={locale} , messages={messages}) => {
             </div>
           </div>
         </div>
-        <h1>{messages('title')}</h1>
+        <h1></h1>
       </nav>
     
   );

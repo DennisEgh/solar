@@ -3,8 +3,6 @@ import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import "../../styles/globals.css";
 import Provider from "../../components/Provider";
-import {useTranslations} from 'next-intl';
-import { useServer } from 'next/dist/shared/lib/utils';
 import { NextIntlClientProvider, useMessages } from "next-intl";
 
 
@@ -13,15 +11,15 @@ export const metadata = {
   description: "Website",
 };
 
-const RootLayout = ({ children, locale }) => {
+const RootLayout = ({ children }) => {
   const messages = useMessages()
   
   
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider messages={messages}>
 
-    <html lang={"en"}>
+    <html lang={"sv"}>
       <body>
         <Provider>
           <main className="app">
