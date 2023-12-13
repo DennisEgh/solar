@@ -107,7 +107,11 @@ const Nav = () => {
           <div className="nav__bar--item">
             {session?.user ? (
               <Link href="/profile" className="nav__bar--link">
-                <Avatar alt="Profile" src={session?.user.image} />
+                <Avatar
+                  sx={{ width: 24, height: 24 }}
+                  alt="Profile"
+                  src={session?.user.image}
+                />
               </Link>
             ) : (
               <>

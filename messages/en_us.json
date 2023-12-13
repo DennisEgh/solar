@@ -1,8 +1,11 @@
 {
-    "nav": {
-      "Solar_Panels": "Solar Panels",
-      "Wallbox": "Wallbox",
-      "About_Us": "About Us",
-      "Contact": "Contact"
-    }
+  "nav": {
+    "Solar_Panels": "Solar Panels",
+    "Wallbox": "Wallbox",
+    "About_Us": "About Us",
+    "Contact": "Contact"
+  },
+  "TEST": {
+    "VAL": "Hello"
   }
+}

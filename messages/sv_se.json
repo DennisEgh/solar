@@ -4,5 +4,8 @@
       "Wallbox": "Laddbox",
       "About_Us": "Om Oss",
       "Contact": "Kontakt"
+    },
+    "TEST": {
+      "VAL": "Hej"
     }
   }
