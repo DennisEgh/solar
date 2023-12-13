@@ -1,5 +1,8 @@
 {
-    "Index": {
-      "title": "Hello world!"
+    "nav": {
+      "Solar_Panels": "Solar Panels",
+      "Wallbox": "Wallbox",
+      "About_Us": "About Us",
+      "Contact": "Contact"
     }
   }

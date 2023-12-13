@@ -1,5 +1,8 @@
 {
-    "Index": {
-      "title": "solceller"
+    "nav": {
+      "Solar_Panels": "Sol Paneler",
+      "Wallbox": "Laddbox",
+      "About_Us": "Om Oss",
+      "Contact": "Kontakt"
     }
   }
