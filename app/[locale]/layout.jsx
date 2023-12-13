@@ -1,5 +1,3 @@
-
-
 import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import "../../styles/globals.css";
@@ -12,26 +10,26 @@ export const metadata = {
 };
 
 const RootLayout = ({ children }) => {
-  const messages = useMessages()
+  const messages = useMessages();
   const locale = useLocale();
+  const locales = ["sv_se", "en_us"];
 
+  if (!locales.includes(locale)) notFound();
 
-  
   return (
-    <NextIntlClientProvider  messages={messages}>
+    <NextIntlClientProvider messages={messages}>
+      <html lang={locale}>
+        <body>
+          <Provider>
+            <main className="app">
+              <Nav />
 
-    <html lang={locale}>
-      <body>
-        <Provider>
-          <main className="app">
-            <Nav />
-           
-            {children}
-            <Footer />
-          </main>
-        </Provider>
-      </body>
-    </html>
+              {children}
+              <Footer />
+            </main>
+          </Provider>
+        </body>
+      </html>
     </NextIntlClientProvider>
   );
 };
