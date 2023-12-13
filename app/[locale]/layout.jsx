@@ -7,7 +7,7 @@ import { NextIntlClientProvider, useMessages } from "next-intl";
 
 
 export const metadata = {
-  title: "Solar",
+  title: "Solteknik & El Sverige Ab",
   description: "Website",
 };
 
@@ -19,7 +19,7 @@ const RootLayout = ({ children }) => {
   return (
     <NextIntlClientProvider messages={messages}>
 
-    <html lang={"sv"}>
+    <html lang={"sv_se"}>
       <body>
         <Provider>
           <main className="app">
