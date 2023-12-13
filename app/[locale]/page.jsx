@@ -1,8 +1,9 @@
 
-const Home = () => {
-  return(
-    <section id="landing__page">
 
+const Home = () => {
+  return (
+    <section id="landing__page">
+      
     </section>
   );
 };

@@ -1,6 +1,8 @@
 /** @type{import('next').NextConfig} */
 
-const nextConfig = {
+const withNextIntl = require('next-intl/plugin')();
+
+module.exports = withNextIntl ({
   experimental: {
     
     serverComponentsExternalPackages: ["mongoose"],
@@ -15,5 +17,6 @@ const nextConfig = {
     };
     return config;
   },
-};
-module.exports = nextConfig;
+
+});
+
