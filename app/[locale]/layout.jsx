@@ -4,8 +4,7 @@ import Nav from "../../components/Nav";
 import Footer from "../../components/Footer";
 import "../../styles/globals.css";
 import Provider from "../../components/Provider";
-import { NextIntlClientProvider, useMessages } from "next-intl";
-
+import { NextIntlClientProvider, useLocale, useMessages } from "next-intl";
 
 export const metadata = {
   title: "Solteknik & El Sverige Ab",
@@ -14,17 +13,18 @@ export const metadata = {
 
 const RootLayout = ({ children }) => {
   const messages = useMessages()
-  
-  
+  const locale = useLocale();
+
+
   
   return (
-    <NextIntlClientProvider messages={messages}>
+    <NextIntlClientProvider  messages={messages}>
 
-    <html lang={"sv_se"}>
+    <html lang={locale}>
       <body>
         <Provider>
           <main className="app">
-            <Nav/>
+            <Nav />
            
             {children}
             <Footer />
