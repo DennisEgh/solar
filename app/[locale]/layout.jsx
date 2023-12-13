@@ -5,7 +5,7 @@ import "../../styles/globals.css";
 import Provider from "../../components/Provider";
 import {useTranslations} from 'next-intl';
 import { useServer } from 'next/dist/shared/lib/utils';
-
+import { NextIntlClientProvider, useMessages } from "next-intl";
 
 
 export const metadata = {
@@ -13,17 +13,19 @@ export const metadata = {
   description: "Website",
 };
 
-const RootLayout = ({ children }) => {
-  const t = useTranslations("Index");
+const RootLayout = ({ children, locale }) => {
+  const messages = useMessages()
   
   
 
   return (
+    <NextIntlClientProvider locale={locale} messages={messages}>
+
     <html lang={"en"}>
       <body>
         <Provider>
           <main className="app">
-            <Nav t={t('title')}/>
+            <Nav/>
            
             {children}
             <Footer />
@@ -31,6 +33,7 @@ const RootLayout = ({ children }) => {
         </Provider>
       </body>
     </html>
+    </NextIntlClientProvider>
   );
 };
 

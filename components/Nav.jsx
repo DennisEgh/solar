@@ -1,6 +1,5 @@
 "use client";
 
-
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -8,8 +7,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import img from "./assets/account.svg";
 import { Avatar } from "@mui/material";
 
-const Nav = () => {
- 
+const Nav = (locale={locale} , messages={messages}) => {
   const { data: session } = useSession();
 
   const [providers, setProvider] = useState(null);
@@ -22,6 +20,8 @@ const Nav = () => {
     };
     setUpProvider();
   }, []);
+
+  
 
   return (
     
@@ -42,17 +42,17 @@ const Nav = () => {
           <div className="nav__bar--middle">
             <div className="nav__bar--item">
               <Link href="/" className="nav__bar--link">
-                <span className="nav__bar--para">Solar Panels</span>
+                <span className="nav__bar--para">Solceller</span>
               </Link>
             </div>
             <div className="nav__bar--item">
               <Link href="/" className="nav__bar--link">
-                <span className="nav__bar--para">Services</span>
+                <span className="nav__bar--para">Laddbox</span>
               </Link>
             </div>
             <div className="nav__bar--item">
               <Link href="/" className="nav__bar--link">
-                <span className="nav__bar--para">About Us</span>
+                <span className="nav__bar--para">Om oss</span>
               </Link>
             </div>
           </div>
@@ -60,7 +60,7 @@ const Nav = () => {
             <div className="nav__bar--item">
               <Link href="/" className="nav__bar--link">
                 <div className="nav__bar--contact">
-                  <span className="nav__bar--contact--para">Contact</span>
+                  <span className="nav__bar--contact--para">Kontakt</span>
                 </div>
               </Link>
             </div>
@@ -100,9 +100,9 @@ const Nav = () => {
             </div>
           </div>
         </div>
-        <h1></h1>
+        <h1>{messages('title')}</h1>
       </nav>
-   
+    
   );
 };
 
