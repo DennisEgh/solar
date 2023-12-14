@@ -50,6 +50,20 @@ const Nav = () => {
           </div>
           <div className="nav__bar--item">
             <Link href="/" className="nav__bar--link">
+              <span className="nav__bar--para">
+                {messages?.nav?.Solar_Panels}
+              </span>
+            </Link>
+          </div>
+          <div className="nav__bar--item">
+            <Link href="/" className="nav__bar--link">
+              <span className="nav__bar--para">
+                {messages?.nav?.Solar_Panels}
+              </span>
+            </Link>
+          </div>
+          <div className="nav__bar--item">
+            <Link href="/" className="nav__bar--link">
               <span className="nav__bar--para">{messages?.nav?.Wallbox}</span>
             </Link>
           </div>
@@ -80,17 +94,7 @@ const Nav = () => {
               ></Image>
             </Link>
           </div>
-          <div className="nav__bar--item">
-            <Link href="/" locale="en_us">
-              <Image
-                className="nav__bar--image"
-                src={globelogo}
-                width={20}
-                height={20}
-                alt="Translate"
-              ></Image>
-            </Link>
-          </div>
+     
 
           {session?.user ? (
             <div className="nav__bar--item">
