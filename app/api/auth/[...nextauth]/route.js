@@ -12,13 +12,12 @@ const handler = NextAuth({
   ],
   callbacks: {
     async session({ session }) {
-      
-        const sessionUser = await User.findOne({
-            email: session.user.email,
-        });
-        session.user.id = sessionUser._id.toString();
-      
-        return session;
+      const sessionUser = await User.findOne({
+        email: session.user.email,
+      });
+      session.user.id = sessionUser._id.toString();
+
+      return session;
     },
     async signIn({ profile }) {
       console.log(profile);
@@ -32,8 +31,7 @@ const handler = NextAuth({
             email: profile.email,
             name: profile.name,
             image: profile.picture,
-            email_verified: profile.email_verified
-
+            email_verified: profile.email_verified,
           });
         }
         return true;
