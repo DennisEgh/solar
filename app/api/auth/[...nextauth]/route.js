@@ -1,7 +1,8 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { connectDB } from "../../../../utils/database";
-import User from "../../../../models/user";
+import User from "../../../../models/userCredentials";
 
 const handler = NextAuth({
   providers: [
@@ -9,7 +10,16 @@ const handler = NextAuth({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
+    CredentialsProvider({
+      name: "credentials",
+      credentials: {},
+
+    
+    }),
   ],
+ 
+
+
   callbacks: {
     async session({ session }) {
       const sessionUser = await User.findOne({

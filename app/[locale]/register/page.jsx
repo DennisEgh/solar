@@ -47,7 +47,6 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(credentials.firstName)
     try {
       const res = await fetch("../../api/register", {
         method: "POST",
