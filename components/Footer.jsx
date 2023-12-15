@@ -18,7 +18,7 @@ const Footer = () => {
           </Link>
         </div>
         <div className="footer__item">
-          <Link href="/" className="footer__link">
+          <Link href="/sign-in" className="footer__link">
             <span className="footer__para">{messages?.footer.Locations}</span>
           </Link>
         </div>
