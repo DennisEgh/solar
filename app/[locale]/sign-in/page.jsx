@@ -50,7 +50,6 @@ export default function SignIn() {
         redirect: false,
       });
 
-      console.log("signed in");
     } catch (error) {
       console.log(error);
     }

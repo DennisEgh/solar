@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "../../../utils/database";
-import User from "../../../models/user";
 import bcrypt from "bcrypt";
-
+import User from "../../../models/user";
 export async function POST(res) {
   const { firstName, lastName, email, password } = await res.json();
   const hashedPassword = await bcrypt.hash(password, 12);
@@ -21,3 +20,4 @@ export async function POST(res) {
     return NextResponse.json({ message: "An Error Occured", status: 500 });
   }
 }
+

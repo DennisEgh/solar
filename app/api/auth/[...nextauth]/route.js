@@ -1,8 +1,8 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { connectDB } from "../../../../utils/database";
-import UserSchema from "../../../../models/user"
 import bcrypt from "bcrypt";
+import User from "../../../../models/user";
 
 const handler = NextAuth({
   providers: [
@@ -14,12 +14,17 @@ const handler = NextAuth({
         const { email, password } = credentials;
         try {
           await connectDB();
+          const user = await User.findOne({ email });
+          if (!user) {
+            return null;
+          }
 
-          
+          const passwordsMatch = await bcrypt.compare(password, user.password);
 
-         
-
-         console.log("allo")
+          if (!passwordsMatch) {
+            return null;
+          }
+          return user;
         } catch (error) {
           console.log(error);
         }
