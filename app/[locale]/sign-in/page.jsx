@@ -13,7 +13,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-
+import { useRouter } from "next/navigation";
 function Copyright(props) {
   return (
     <Typography
@@ -39,6 +39,8 @@ const defaultTheme = createTheme();
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,6 +52,13 @@ export default function SignIn() {
         redirect: false,
       });
 
+      if (res.error) {
+        setError("Email Or Password Is Invalid. Please Try Again.");
+      }
+
+      if (res.ok) {
+        router.replace("/");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -103,6 +112,11 @@ export default function SignIn() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
+            {error && (
+              <Typography variant="h6" color="error" align="center">
+                {error}
+              </Typography>
+            )}
             <Button
               type="submit"
               fullWidth
