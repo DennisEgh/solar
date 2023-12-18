@@ -12,6 +12,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useRouter } from "next/navigation";
 
 function Copyright(props) {
   return (
@@ -42,33 +44,29 @@ export default function SignUp() {
     email: "",
     password: "",
   });
-
+  const supabase = createClientComponentClient();
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await fetch("../../api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            firstName: credentials.firstName,
-            lastName: credentials.lastName,
-            email: credentials.email,
-            password: credentials.password,
-        }),
-      });
 
-      if (res.ok) {
-        console.log("User Registration Succeeded");
-      } else {
-        console.log("User Registration Failed");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    await supabase.auth.signUp({
+      email: credentials.email,
+      password: credentials.password,
+     
+    });
+    router.refresh();
+  
   };
+
+  const getUser = async() =>{
+
+    const { data, error } = await supabase.auth.refreshSession()
+    const { session, user } = data
+    
+        console.log( session, user)
+  }
+  getUser()
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
@@ -101,8 +99,13 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
-                  onChange={(e) => setCredentials((prev) => ({ ...prev, firstName: e.target.value }))}
-                  />
+                  onChange={(e) =>
+                    setCredentials((prev) => ({
+                      ...prev,
+                      firstName: e.target.value,
+                    }))
+                  }
+                />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -112,8 +115,13 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
-                  onChange={(e) => setCredentials((prev) => ({ ...prev, lastName: e.target.value }))}
-                  />
+                  onChange={(e) =>
+                    setCredentials((prev) => ({
+                      ...prev,
+                      lastName: e.target.value,
+                    }))
+                  }
+                />
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -123,8 +131,13 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  onChange={(e) => setCredentials((prev) => ({ ...prev, email: e.target.value }))}
-                  />
+                  onChange={(e) =>
+                    setCredentials((prev) => ({
+                      ...prev,
+                      email: e.target.value,
+                    }))
+                  }
+                />
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -135,8 +148,13 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                  onChange={(e) => setCredentials((prev) => ({ ...prev, password: e.target.value }))}
-                  />
+                  onChange={(e) =>
+                    setCredentials((prev) => ({
+                      ...prev,
+                      password: e.target.value,
+                    }))
+                  }
+                />
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel

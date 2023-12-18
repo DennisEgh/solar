@@ -2,27 +2,13 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import accountlogo from "./assets/account.svg";
 import globelogo from "./assets/Globe_icon.svg";
-import { Avatar } from "@mui/material";
 import { useMessages } from "next-intl";
 import { Link } from "../navigation";
 
+
 const Nav = () => {
-  const { data: session } = useSession();
-
-  const [providers, setProvider] = useState(null);
-
-  useEffect(() => {
-    const setUpProvider = async () => {
-      const response = await getProviders();
-
-      setProvider(response);
-    };
-    setUpProvider();
-  }, []);
-  const messages = useMessages();
+const messages = useMessages();
 
   console.log();
   return (
@@ -93,46 +79,6 @@ const Nav = () => {
                 alt="Translate"
               ></Image>
             </Link>
-          </div>
-     
-
-          {session?.user ? (
-            <div className="nav__bar--item">
-              <div className="nav__bar--contact">
-                <span
-                  className="nav__bar--contact--para"
-                  onClick={() => signOut()}
-                >
-                  Temp sign out
-                </span>
-              </div>
-            </div>
-          ) : null}
-          <div className="nav__bar--item">
-            {session?.user ? (
-              <Link href="/profile" className="nav__bar--link">
-                <Avatar
-                  sx={{ width: 24, height: 24 }}
-                  alt="Profile"
-                  src={session?.user.image}
-                />
-              </Link>
-            ) : (
-              <>
-                {providers &&
-                  Object.values(providers).map((provider) => (
-                    <Image
-                      className="nav__bar--image"
-                      src={accountlogo}
-                      width={24}
-                      height={24}
-                      alt="Account"
-                      key={provider.name}
-                      onClick={() => signIn(provider.id)}
-                    />
-                  ))}
-              </>
-            )}
           </div>
         </div>
       </div>

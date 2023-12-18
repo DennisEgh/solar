@@ -11,9 +11,10 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { useState, useEffect } from "react";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
+
 function Copyright(props) {
   return (
     <Typography
@@ -32,7 +33,6 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
@@ -40,29 +40,33 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const [user, setUser] = useState(null);
+
+  const supabase = createClientComponentClient();
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      const res = await signIn("credentials", {
-        email,
-        password,
-        redirect: false,
-      });
-
-      if (res.error) {
-        setError("Email Or Password Is Invalid. Please Try Again.");
-      }
-
-      if (res.ok) {
-        router.replace("/");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    router.refresh();
   };
+
+  useEffect(() => {
+    async function getUser() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+      setUser(user);
+    }
+
+getUser()
+  
+  }, []);
+
+  console.log(user)
 
   return (
     <ThemeProvider theme={defaultTheme}>
